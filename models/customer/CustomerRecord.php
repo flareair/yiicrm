@@ -15,7 +15,7 @@ class CustomerRecord extends ActiveRecord
         return [
             ['id', 'number'],
             ['name', 'required'],
-            ['name', 'strung', 'max' => 256],
+            ['name', 'string', 'max' => 256],
             ['birth_date', 'date', 'format' => 'Y-m-d'],
             ['notes', 'safe']
         ];
