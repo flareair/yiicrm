@@ -1,0 +1,14 @@
+<?php
+
+namespace app\models\customer;
+class Customer {
+    public $name;
+    public $birth_date;
+    public $phones = [];
+
+    public function __construct($name, $birth_date)
+    {
+        $this->name = $name;
+        $this->birth_date = $birth_date;
+    }
+}
