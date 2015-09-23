@@ -7,7 +7,9 @@
             "email": "flareair0@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "yiisoft/yii2": "*"
+    },
     "require-dev": {
         "codeception/codeception": "*",
         "fzaninotto/faker": "*"
