@@ -1,0 +1,11 @@
+{
+    "name": "yaroslav/yiicrm",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "flareair",
+            "email": "flareair0@gmail.com"
+        }
+    ],
+    "require": {}
+}
