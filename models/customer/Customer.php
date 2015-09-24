@@ -3,12 +3,12 @@
 namespace app\models\customer;
 class Customer {
     public $name;
-    public $birth_date;
+    public $birthDate;
     public $phones = [];
 
-    public function __construct($name, $birth_date)
+    public function __construct($name, $birthDate)
     {
         $this->name = $name;
-        $this->birth_date = $birth_date;
+        $this->birthDate = $birthDate;
     }
 }
