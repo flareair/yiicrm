@@ -11,7 +11,7 @@ class m150923_100152_init_customer_table extends Migration
             'customer',
             [
                 'id' => 'pk',
-                'name' => 'string',
+                'name' => 'string unique',
                 'birth_date' => 'date',
                 'notes' => 'text',
             ],

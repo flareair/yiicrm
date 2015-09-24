@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use app\models\customer\Customer;
+use app\models\customer\Phone;
 use app\models\customer\CustomerRecord;
 use app\models\customer\PhoneRecord;
 
@@ -11,16 +12,40 @@ class CustomersController extends Controller
 {
     public function actionIndex()
     {
-        $records = $this->getRecordsAccordingToQuery();
-        return $this->render('index', compact('records'));
-        // return 'action!';
+        // $records = $this->findRecordsByQuery();
+        // return $this->render('index', compact('records'));
+        return 'action!';
     }
 
     public function actionAdd()
     {
         $customer = new CustomerRecord;
         $phone = new PhoneRecord;
+
+        if ($this->load($customer, $phone, $_POST))
+        {
+            $this->store($this->makeCustomer($customer, $phone));
+            return $this->redirect('/customers');
+        }
         return $this->render('add', compact('customer', 'phone'));
+    }
+
+    private function findRecordsByQuery()
+    {
+        $number = Yii::$app->request->get('phone_number');
+        $records = $this->getRecordsByPhoneNumber($number);
+        $dataProvider = $this->wrapIntoDataProvider($records);
+
+        return $dataProvider;
+    }
+
+    private function load(
+        CustomerRecord $customer,
+        PhoneRecord $phone,
+        array $post
+    ){
+        return $customer->load($post) && $phone->load($post) &&
+        $customer->validate() && $phone->validate(['number']);
     }
 
     private function store(Customer $customer)
@@ -44,12 +69,13 @@ class CustomersController extends Controller
         PhoneRecord $phoneRecord
     ) {
         $name = $customerRecord->name;
-        $birthDate = $customerRecord->birth_date;
+        $birthDate = new \DateTime($customerRecord->birth_date);
 
         $customer = new Customer($name, $birthDate);
         $customer->notes = $customerRecord->notes;
 
         // need to be changed for multiple numbers
         $customer->phones[] = new Phone($phoneRecord->number);
+        return $customer;
     }
 }
