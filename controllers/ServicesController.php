@@ -8,7 +8,7 @@ use app\models\service\ServiceSearchModel;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\Response;
 /**
  * ServicesController implements the CRUD actions for ServiceRecord model.
  */
@@ -101,6 +101,25 @@ class ServicesController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionJson()
+    {
+        $models = ServiceRecord::find()->all();
+
+        $data = array_map(
+            function($model)
+            {
+                return $model->attributes;
+            },
+            $models
+        );
+
+        $response = Yii::$app->response;
+        $response->format = Response::FORMAT_JSON;
+        $response->data = $data;
+
+        return $response;
     }
 
     /**
