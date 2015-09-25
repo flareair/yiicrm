@@ -3,5 +3,7 @@
 <ul class="list-unstyled">
     <li><a href="/customers">Customers</a></li>
     <li><a href="/services">Services</a></li>
-    <li><a href="/docs">Docs</a></li>
+    <li><a href="/site/docs">Docs</a></li>
 </ul>
+
+<if class="fa fa-lg fa-angle-right"></if>
