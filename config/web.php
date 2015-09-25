@@ -18,6 +18,13 @@ return [
                 ],
             ],
         ],
+        'response' => [
+            'formatters' => [
+                'yaml' => [
+                    'class' => 'app\utilities\YamlResponseFormatter'
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'gii' => [
