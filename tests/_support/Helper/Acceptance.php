@@ -6,4 +6,9 @@ namespace Helper;
 class Acceptance extends \Codeception\Module
 {
 
+    public function seeContentIsLong($content, $maxLength = 100)
+    {
+        $this->assertGreaterThen($maxLength, strlen($content));
+    }
+
 }
