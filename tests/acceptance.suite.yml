@@ -10,3 +10,7 @@ modules:
         - PhpBrowser:
             url: http://yiicrm.app/
         - \Helper\Acceptance
+        - Db:
+            populate: true
+            cleanup: true
+            reconnect: true
