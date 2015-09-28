@@ -76,6 +76,7 @@ class CustomersController extends Controller
 
     private function getAllRecords() {
         $records = CustomerRecord::find()->all();
+        $result = [];
         foreach ($records as $customerRecord) {
             $phoneRecord = PhoneRecord::findOne(['customer_id' => $customerRecord->id]);
             $result[] = $this->makeCustomer($customerRecord, $phoneRecord);
