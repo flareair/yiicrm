@@ -7,16 +7,16 @@ $I->amInAddCustomerUi();
 
 $first_customer = $I->imagineCustomer();
 
-$I->fillCustomerDataForm($first_customer);
-$I->submitCustomerDataForm();
+$I->fillDataForm($first_customer);
+$I->submitDataForm();
 $I->seeIAmInListCustomersUi();
 
 $I->amInAddCustomerUi();
 
 $second_customer = $I->imagineCustomer();
 
-$I->fillCustomerDataForm($second_customer);
-$I->submitCustomerDataForm();
+$I->fillDataForm($second_customer);
+$I->submitDataForm();
 $I->seeIAmInListCustomersUi();
 
 $I = new \Step\Acceptance\CRMUserSteps($scenario);

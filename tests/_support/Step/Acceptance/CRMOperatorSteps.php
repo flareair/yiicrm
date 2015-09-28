@@ -3,6 +3,8 @@ namespace Step\Acceptance;
 
 class CRMOperatorSteps extends \AcceptanceTester
 {
+    public $faker;
+
     public function amInAddCustomerUi()
     {
         $I = $this;
@@ -20,7 +22,7 @@ class CRMOperatorSteps extends \AcceptanceTester
         ];
     }
 
-    public function fillCustomerDataForm($fieldsData)
+    public function fillDataForm($fieldsData)
     {
         $I = $this;
 
@@ -30,10 +32,10 @@ class CRMOperatorSteps extends \AcceptanceTester
         }
     }
 
-    public function submitCustomerDataForm()
+    public function submitDataForm()
     {
         $I = $this;
-        $I->click('Submit');
+        $I->click('button[type=submit]');
     }
 
     public function seeIAmInListCustomersUi()
@@ -46,5 +48,25 @@ class CRMOperatorSteps extends \AcceptanceTester
     {
         $I = $this;
         $I->amOnPage('/customers');
+    }
+
+    public function imagineService() {
+        $faker = \Faker\Factory::create();
+        return [
+            'ServiceRecord[name]' => $faker->sentence(),
+            'ServiceRecord[hourly_rate]' => $faker->numberBetween(5, 40),
+        ];
+    }
+
+    public function addService() {
+        $I = $this;
+        $I->amOnpage('/services/create');
+
+        $service = $I->imagineService();
+
+        $I->fillDataForm($service);
+        $I->submitDataForm();
+
+        return $service;
     }
 }
