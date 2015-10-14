@@ -13,6 +13,7 @@ class m150928_140553_init_user_table extends Migration
                 'id' => 'pk',
                 'username' => 'string unique',
                 'password' => 'string',
+                'auth_key' => 'string unique',
             ]
         );
     }
