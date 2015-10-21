@@ -3,7 +3,8 @@
 namespace app\models\user;
 
 use Yii;
-
+use yii\web\IdentityInterface;
+use yii\db\ActiveRecord;
 /**
  * This is the model class for table "user".
  *
@@ -11,7 +12,7 @@ use Yii;
  * @property string $username
  * @property string $password
  */
-class UserRecord extends \yii\db\ActiveRecord
+class UserRecord extends ActiveRecord implements IdentityInterface
 {
     /**
      * @inheritdoc
@@ -70,7 +71,7 @@ class UserRecord extends \yii\db\ActiveRecord
     }
 
 
-    public function getAuthKey($authKey)
+    public function getAuthKey()
     {
         return $this->auth_key;
     }
