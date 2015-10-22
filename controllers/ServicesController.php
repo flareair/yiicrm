@@ -8,6 +8,7 @@ use app\models\service\ServiceSearchModel;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\web\Response;
 use app\utilities\YamlResponseFormatter;
 
@@ -25,6 +26,15 @@ class ServicesController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' =>['manager'],
+                    ]
+                ]
+            ]
         ];
     }
 

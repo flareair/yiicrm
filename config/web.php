@@ -3,6 +3,10 @@ return [
     'id' => 'yiicrm',
     'basePath' => realpath(__DIR__ . '/../'),
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            // 'defaultRoles' => ['guest'],
+        ],
         'db' => require(__DIR__ . '/db.php'),
         'request' => [
             'cookieValidationKey' => 'secret',

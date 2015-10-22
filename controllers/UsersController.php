@@ -8,6 +8,7 @@ use app\models\user\UserSearchModel;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * UsersController implements the CRUD actions for UserRecord model.
@@ -23,6 +24,15 @@ class UsersController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin']
+                    ]
+                ]
+            ]
         ];
     }
 
@@ -32,6 +42,7 @@ class UsersController extends Controller
      */
     public function actionIndex()
     {
+        // var_dump(\Yii::$app->authManager->getRolesByUser(2));
         $searchModel = new UserSearchModel();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
